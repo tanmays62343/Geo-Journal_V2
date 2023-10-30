@@ -13,7 +13,7 @@ data class PlaceModel(
     val title : String,
     val category : String,
     val date : String,
-    val location : String,
+    val address : String,
     val latitude : Double,
     val longitude : Double
 

@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.trx.models.PlaceModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PlacesDao {
@@ -18,7 +19,7 @@ interface PlacesDao {
     fun updatePlace(place : PlaceModel)
 
     @Delete
-    fun deletePlace(place: PlaceModel)
+    suspend fun deletePlace(place: PlaceModel)
 
     @Query("SELECT * FROM Places")
     fun getPlaces() : LiveData<List<PlaceModel>>

@@ -41,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
-        android:entries="@array/Distance_Filter"
+        android:entries="@array/Distances_Filter"
         app:layout_constraintBottom_toBottomOf="@+id/top_Chips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/top_Chips"
