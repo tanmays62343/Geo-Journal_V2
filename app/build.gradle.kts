@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -53,7 +54,10 @@ dependencies {
     //Maps and Places(place autocomplete search bar) Dependencies
     implementation ("com.google.android.libraries.places:places:3.2.0")         //for autocomplete search
     implementation ("com.google.android.gms:play-services-maps:18.2.0")         //for map
-    implementation ("com.google.android.gms:play-services-location:21.0.1")     //for current location
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.firebase:firebase-analytics:21.5.0")
+    implementation("com.google.firebase:firebase-auth:22.2.0")
+    implementation("com.google.firebase:firebase-database:20.3.0")     //for current location
 
     //Room database dependencies
     val roomVersion = "2.6.0"

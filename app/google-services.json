@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1048023897537",
+    "firebase_url": "https://geo-journal-v2-default-rtdb.firebaseio.com",
+    "project_id": "geo-journal-v2",
+    "storage_bucket": "geo-journal-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048023897537:android:3c023e2f83270a7e2d0b40",
+        "android_client_info": {
+          "package_name": "com.trx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUpPYBn3SsNWDAeqWKxYTx5qXincpimls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
