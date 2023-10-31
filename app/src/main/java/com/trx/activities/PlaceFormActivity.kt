@@ -64,6 +64,7 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
         if (mPlaceDetails != null) {
             supportActionBar?.title = "Edit Happy Place"
 
+
             binding.tvTitle.setText(mPlaceDetails!!.title)
             binding.tvCategory.text = mPlaceDetails!!.category
             binding.date.text = mPlaceDetails!!.date

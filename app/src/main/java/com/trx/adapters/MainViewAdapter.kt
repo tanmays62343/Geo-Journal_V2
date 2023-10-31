@@ -51,10 +51,9 @@ class MainViewAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val model = list?.get(position)
+        val model = list[position]
         if (holder is MyViewHolder) {
-            //holder.itemView.iv_place_image.setImageURI(Uri.parse(model.image))
-            holder.tvTitle.text = model!!.title
+            holder.tvTitle.text = model.title
             holder.tvDescription.text = model.category
 
             var distance = 0.0
