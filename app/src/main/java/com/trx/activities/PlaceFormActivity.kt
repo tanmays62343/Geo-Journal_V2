@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
 import com.trx.R
 import com.trx.database.PlacesDatabase
 import com.trx.databinding.ActivityPlaceFormBinding
@@ -51,6 +53,9 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
         //Getting current date
         val currentDate = getCurrentDate()
         binding.date.text = "Date : $currentDate"
+
+        // Initialize Firebase
+        FirebaseApp.initializeApp(this)
 
         //Getting instance of the database
         database = PlacesDatabase.getInstance(applicationContext)
@@ -138,6 +143,7 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             binding.btnAdd.id -> {
+
                 //fields validation
                 if (binding.tvTitle.text.isEmpty() || category.isEmpty() ||
                     binding.tvAddress.text.isEmpty()
@@ -148,6 +154,8 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
                     ).show()
                     return
                 }
+
+                savePlaceData()
 
                 val placeObj = PlaceModel(
                     0,
@@ -195,6 +203,62 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+    private fun savePlaceToFirebase(place: PlaceModel) {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("places")
+        val newRef = myRef.push()
+        newRef.setValue(place) // Push the place data to Firebase Realtime Database
+    }
+
+    // When you want to save the place data
+    private fun savePlaceData() {
+        if (mPlaceDetails == null) {
+            // New place, save it to Firebase and local database
+            val placeObj = PlaceModel(
+                0,
+                binding.tvTitle.text.toString(),
+                category,
+                binding.date.text.toString(),
+                address,
+                latitude,
+                longitude
+            )
+
+            // Save to Firebase
+            savePlaceToFirebase(placeObj)
+
+            // Show a message or navigate back
+            navigateToMainActivity()
+        } else {
+            // Existing place, update it in Firebase and local database
+            // ...
+            // Handle the update logic here
+
+            // Show a message or navigate back
+            navigateToMainActivity()
+        }
+    }
+
+    private fun savePlaceToLocalDatabase(place: PlaceModel) {
+        // Create a coroutine to perform database insert operation
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                database.contactDao().insertPlace(place)
+            }
+        }
+    }
+
+    private fun navigateToMainActivity() {
+        Intent(
+            this@PlaceFormActivity,
+            MainActivity::class.java
+        ).also {
+            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(it)
+        }
+    }
+
 
 
     //Handling back Button on toolbar

@@ -55,8 +55,11 @@ dependencies {
     implementation ("com.google.android.libraries.places:places:3.2.0")         //for autocomplete search
     implementation ("com.google.android.gms:play-services-maps:18.2.0")         //for map
     implementation ("com.google.android.gms:play-services-location:21.0.1")
+
+    //firebase
     implementation("com.google.firebase:firebase-analytics:21.5.0")
     implementation("com.google.firebase:firebase-auth:22.2.0")
+    implementation ("com.google.firebase:firebase-core:21.1.1")
     implementation("com.google.firebase:firebase-database:20.3.0")     //for current location
 
     //Room database dependencies

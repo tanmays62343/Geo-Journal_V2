@@ -1,4 +1,4 @@
-package com.trx.swipe
+package com.trx.miscellaneous
 
 import android.content.Context
 import android.graphics.Canvas

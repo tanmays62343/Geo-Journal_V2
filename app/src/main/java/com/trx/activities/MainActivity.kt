@@ -1,27 +1,41 @@
 package com.trx.activities
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PowerManager
 import android.view.View
 import android.widget.AdapterView
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.database
 import com.trx.R
 import com.trx.adapters.MainViewAdapter
 import com.trx.database.PlacesDatabase
 import com.trx.databinding.ActivityMainBinding
+import com.trx.miscellaneous.ConnectivityReceiver
 import com.trx.models.PlaceModel
-import com.trx.swipe.SwipeToDeleteCallback
-import com.trx.swipe.SwipeToEditCallback
+import com.trx.miscellaneous.SwipeToDeleteCallback
+import com.trx.miscellaneous.SwipeToEditCallback
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.math.atan2
 import kotlin.math.sqrt
 
@@ -52,7 +66,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mPlacesList = database.contactDao().getPlaces()
         //Getting all the places
         getHappyPlacesListFromLocalDB()
-
         //for Getting current location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
