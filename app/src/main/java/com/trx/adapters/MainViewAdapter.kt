@@ -79,10 +79,10 @@ class MainViewAdapter(
             }
             if (distance > 1000) {
                 dist = distance / 1000
-                holder.tvDist.text = String.format("%.2f\nkms", dist)
+                holder.tvDist.text = String.format("%.4f kms", dist)
             } else {
                 dist = distance
-                holder.tvDist.text = String.format("%.2f meters", dist)
+                holder.tvDist.text = String.format("%.4f meters", dist)
             }
 
             holder.itemView.setOnClickListener {

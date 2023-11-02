@@ -30,8 +30,6 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
     private var mPlaceDetails: PlaceModel? = null
 
     //Properties of our place object
-    private lateinit var title: String
-    private lateinit var date: String
     private var latitude: Double = 0.00
     private var longitude: Double = 0.00
     private var address: String = ""
@@ -62,11 +60,10 @@ class PlaceFormActivity : AppCompatActivity(), View.OnClickListener {
             //set the views if edit is asked
             supportActionBar?.title = "Edit Place"
 
-            binding.tvTitle.setText(mPlaceDetails!!.title)
-            binding.tvCategory.text = mPlaceDetails!!.category
-            binding.date.text = mPlaceDetails!!.date
-            binding.tvAddress.text = mPlaceDetails!!.address
-
+            binding.tvTitle.setText(mPlaceDetails?.title)
+            binding.tvCategory.text = mPlaceDetails?.category
+            binding.date.text = mPlaceDetails?.date
+            binding.tvAddress.text = mPlaceDetails?.address
             latitude = mPlaceDetails!!.latitude
             longitude = mPlaceDetails!!.longitude
         }

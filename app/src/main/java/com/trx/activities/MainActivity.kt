@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private var placesAdapter: MainViewAdapter? = null
 
     //for getting the spinner's Distance
-    var distance: Double? = null
+    private var distance: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,34 +85,34 @@ class MainActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedDistance = distanceArray[position]
-
                 when (selectedDistance) {
-                    "All" -> {
 
+                    "All" -> {
+                        distance = null
                     }
 
                     "500m" -> {
-
+                        distance = 500.00
                     }
 
                     "1km" -> {
-
+                        distance = 1000.00
                     }
 
                     "1.5km" -> {
-
+                        distance = 1500.00
                     }
 
                     "2km" -> {
-
+                        distance = 2000.00
                     }
 
                     "2.5km" -> {
-
+                        distance = 2500.00
                     }
 
                     "3km" -> {
-
+                        distance = 3000.00
                     }
                 }
 
